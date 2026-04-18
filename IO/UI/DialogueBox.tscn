@@ -1,9 +1,17 @@
 [gd_scene format=3 uid="uid://bncxdntdwv31b"]
 
-[ext_resource type="Texture2D" uid="uid://2lhe87nidm4h" path="res://Assets/Characters/Josa.png" id="1_4i1j6"]
 [ext_resource type="Script" uid="uid://bdr7ns87rgexw" path="res://UI/dialogue_box.gd" id="1_ys8mp"]
+[ext_resource type="Texture2D" uid="uid://dejp0e5nqqu6s" path="res://Assets/Characters/IO-Student_NonGlossed.png" id="2_4jsxm"]
 [ext_resource type="FontFile" uid="uid://ci73tgdvfkr2b" path="res://Assets/fs-pixel-sans-unicode-regular.ttf" id="2_ys8mp"]
 [ext_resource type="FontFile" uid="uid://b1smo7488bnqg" path="res://Assets/Silkscreen-Bold.ttf" id="4_5mryu"]
+[ext_resource type="Texture2D" uid="uid://ueyih8nbo8qt" path="res://icon.svg" id="5_v0vep"]
+
+[sub_resource type="Gradient" id="Gradient_oaxx8"]
+offsets = PackedFloat32Array(0.935567, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gsxh0"]
+gradient = SubResource("Gradient_oaxx8")
 
 [node name="DialogueBox" type="CanvasLayer" unique_id=1759517449 groups=["dialog_box"]]
 script = ExtResource("1_ys8mp")
@@ -14,17 +22,18 @@ offset_bottom = 652.0
 color = Color(0.219945, 0.292178, 0.309156, 1)
 
 [node name="Portrait" type="TextureRect" parent="." unique_id=306340806]
-offset_left = 272.0
-offset_top = 69.0
-offset_right = 651.0
-offset_bottom = 423.0
-texture = ExtResource("1_4i1j6")
+offset_left = 72.0
+offset_top = 11.0
+offset_right = 2552.0
+offset_bottom = 3519.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_4jsxm")
 
 [node name="Panel" type="Panel" parent="." unique_id=1887537901]
-offset_left = 17.0
+offset_left = 2.0
 offset_top = 392.0
 offset_right = 727.0
-offset_bottom = 643.0
+offset_bottom = 647.0
 
 [node name="Name" type="Label" parent="." unique_id=1824383783]
 offset_left = 30.0
@@ -33,37 +42,89 @@ offset_right = 210.0
 offset_bottom = 405.0
 theme_override_fonts/font = ExtResource("2_ys8mp")
 theme_override_font_sizes/font_size = 64
-text = "JOSA"
+text = "Student"
 
 [node name="Dialog" type="RichTextLabel" parent="." unique_id=666579189]
 offset_left = 33.0
 offset_top = 406.0
-offset_right = 1119.0
+offset_right = 706.0
 offset_bottom = 618.0
 theme_override_fonts/normal_font = ExtResource("2_ys8mp")
 theme_override_fonts/bold_font = ExtResource("4_5mryu")
 theme_override_font_sizes/normal_font_size = 48
 theme_override_font_sizes/bold_font_size = 28
 bbcode_enabled = true
-text = "UR MOM DED"
+text = "Hey Mr.  Vending Machine"
 
 [node name="Option1" type="Button" parent="." unique_id=704781417]
-offset_left = 373.0
-offset_top = 555.0
-offset_right = 704.0
-offset_bottom = 597.0
+z_index = 1
+offset_left = 761.0
+offset_top = 532.0
+offset_right = 1092.0
+offset_bottom = 574.0
 theme_override_fonts/font = ExtResource("2_ys8mp")
 theme_override_font_sizes/font_size = 32
-text = "Option 1"
+text = "Refuse to Dispense"
 
 [node name="Option2" type="Button" parent="." unique_id=328626567]
-offset_left = 375.0
-offset_top = 604.0
-offset_right = 708.0
-offset_bottom = 646.0
+z_index = 1
+offset_left = 762.0
+offset_top = 167.0
+offset_right = 911.0
+offset_bottom = 209.0
 theme_override_fonts/font = ExtResource("2_ys8mp")
 theme_override_font_sizes/font_size = 32
-text = "Option 2"
+text = "Dispense Soda"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=207301681]
+offset_left = 724.0
+offset_top = -1.0
+offset_right = 1152.0
+offset_bottom = 646.0
+texture = SubResource("GradientTexture1D_gsxh0")
+metadata/_edit_lock_ = true
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=289493493]
+offset_left = 774.0
+offset_top = 50.0
+offset_right = 902.0
+offset_bottom = 178.0
+texture_normal = ExtResource("5_v0vep")
+
+[node name="TextureButton2" type="TextureButton" parent="." unique_id=285941871]
+offset_left = 968.0
+offset_top = 45.0
+offset_right = 1096.0
+offset_bottom = 173.0
+texture_normal = ExtResource("5_v0vep")
+
+[node name="TextureButton3" type="TextureButton" parent="." unique_id=24925544]
+offset_left = 769.0
+offset_top = 209.0
+offset_right = 897.0
+offset_bottom = 337.0
+texture_normal = ExtResource("5_v0vep")
+
+[node name="TextureButton4" type="TextureButton" parent="." unique_id=1670667641]
+offset_left = 966.0
+offset_top = 215.0
+offset_right = 1094.0
+offset_bottom = 343.0
+texture_normal = ExtResource("5_v0vep")
+
+[node name="TextureButton5" type="TextureButton" parent="." unique_id=123468372]
+offset_left = 771.0
+offset_top = 371.0
+offset_right = 899.0
+offset_bottom = 499.0
+texture_normal = ExtResource("5_v0vep")
+
+[node name="TextureButton6" type="TextureButton" parent="." unique_id=1829913622]
+offset_left = 971.0
+offset_top = 375.0
+offset_right = 1099.0
+offset_bottom = 503.0
+texture_normal = ExtResource("5_v0vep")
 
 [connection signal="pressed" from="Option1" to="." method="_on_Option1_pressed"]
 [connection signal="pressed" from="Option2" to="." method="_on_Option2_pressed"]
