@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://bncxdntdwv31b"]
+
+[ext_resource type="Texture2D" uid="uid://2lhe87nidm4h" path="res://Assets/Characters/Josa.png" id="1_4i1j6"]
+[ext_resource type="Script" uid="uid://bdr7ns87rgexw" path="res://UI/dialogue_box.gd" id="1_ys8mp"]
+[ext_resource type="FontFile" uid="uid://ci73tgdvfkr2b" path="res://Assets/fs-pixel-sans-unicode-regular.ttf" id="2_ys8mp"]
+[ext_resource type="FontFile" uid="uid://b1smo7488bnqg" path="res://Assets/Silkscreen-Bold.ttf" id="4_5mryu"]
+
+[node name="DialogueBox" type="CanvasLayer" unique_id=1759517449 groups=["dialog_box"]]
+script = ExtResource("1_ys8mp")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1266340262]
+offset_right = 1154.0
+offset_bottom = 652.0
+color = Color(0.219945, 0.292178, 0.309156, 1)
+
+[node name="Portrait" type="TextureRect" parent="." unique_id=306340806]
+offset_left = 272.0
+offset_top = 69.0
+offset_right = 651.0
+offset_bottom = 423.0
+texture = ExtResource("1_4i1j6")
+
+[node name="Panel" type="Panel" parent="." unique_id=1887537901]
+offset_left = 17.0
+offset_top = 392.0
+offset_right = 727.0
+offset_bottom = 643.0
+
+[node name="Name" type="Label" parent="." unique_id=1824383783]
+offset_left = 30.0
+offset_top = 325.0
+offset_right = 210.0
+offset_bottom = 405.0
+theme_override_fonts/font = ExtResource("2_ys8mp")
+theme_override_font_sizes/font_size = 64
+text = "JOSA"
+
+[node name="Dialog" type="RichTextLabel" parent="." unique_id=666579189]
+offset_left = 33.0
+offset_top = 406.0
+offset_right = 1119.0
+offset_bottom = 618.0
+theme_override_fonts/normal_font = ExtResource("2_ys8mp")
+theme_override_fonts/bold_font = ExtResource("4_5mryu")
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 28
+bbcode_enabled = true
+text = "UR MOM DED"
+
+[node name="Option1" type="Button" parent="." unique_id=704781417]
+offset_left = 373.0
+offset_top = 555.0
+offset_right = 704.0
+offset_bottom = 597.0
+theme_override_fonts/font = ExtResource("2_ys8mp")
+theme_override_font_sizes/font_size = 32
+text = "Option 1"
+
+[node name="Option2" type="Button" parent="." unique_id=328626567]
+offset_left = 375.0
+offset_top = 604.0
+offset_right = 708.0
+offset_bottom = 646.0
+theme_override_fonts/font = ExtResource("2_ys8mp")
+theme_override_font_sizes/font_size = 32
+text = "Option 2"
+
+[connection signal="pressed" from="Option1" to="." method="_on_Option1_pressed"]
+[connection signal="pressed" from="Option2" to="." method="_on_Option2_pressed"]
