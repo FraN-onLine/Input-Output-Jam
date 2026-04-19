@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://dejp0e5nqqu6s" path="res://Assets/Characters/IO-Student_NonGlossed.png" id="2_4jsxm"]
 [ext_resource type="FontFile" uid="uid://ci73tgdvfkr2b" path="res://Assets/fs-pixel-sans-unicode-regular.ttf" id="2_ys8mp"]
 [ext_resource type="FontFile" uid="uid://b1smo7488bnqg" path="res://Assets/Silkscreen-Bold.ttf" id="4_5mryu"]
-[ext_resource type="Texture2D" uid="uid://ueyih8nbo8qt" path="res://icon.svg" id="5_v0vep"]
 
 [sub_resource type="Gradient" id="Gradient_oaxx8"]
 offsets = PackedFloat32Array(0.935567, 1)
@@ -58,23 +57,33 @@ text = "Hey Mr.  Vending Machine"
 
 [node name="Option1" type="Button" parent="." unique_id=704781417]
 z_index = 1
-offset_left = 761.0
-offset_top = 532.0
-offset_right = 1092.0
-offset_bottom = 574.0
+offset_left = 384.0
+offset_top = 558.0
+offset_right = 715.0
+offset_bottom = 600.0
 theme_override_fonts/font = ExtResource("2_ys8mp")
 theme_override_font_sizes/font_size = 32
-text = "Refuse to Dispense"
+text = "Option1"
+
+[node name="Next" type="Button" parent="." unique_id=956831406]
+z_index = 1
+offset_left = 600.0
+offset_top = 599.0
+offset_right = 710.0
+offset_bottom = 641.0
+theme_override_fonts/font = ExtResource("2_ys8mp")
+theme_override_font_sizes/font_size = 32
+text = "Next"
 
 [node name="Option2" type="Button" parent="." unique_id=328626567]
 z_index = 1
-offset_left = 762.0
-offset_top = 167.0
-offset_right = 911.0
-offset_bottom = 209.0
+offset_left = 384.0
+offset_top = 604.0
+offset_right = 715.0
+offset_bottom = 646.0
 theme_override_fonts/font = ExtResource("2_ys8mp")
 theme_override_font_sizes/font_size = 32
-text = "Dispense Soda"
+text = "Option2"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=207301681]
 offset_left = 724.0
@@ -84,47 +93,91 @@ offset_bottom = 646.0
 texture = SubResource("GradientTexture1D_gsxh0")
 metadata/_edit_lock_ = true
 
-[node name="TextureButton" type="TextureButton" parent="." unique_id=289493493]
-offset_left = 774.0
-offset_top = 50.0
-offset_right = 902.0
-offset_bottom = 178.0
-texture_normal = ExtResource("5_v0vep")
+[node name="Items" type="Node2D" parent="." unique_id=643420723]
 
-[node name="TextureButton2" type="TextureButton" parent="." unique_id=285941871]
-offset_left = 968.0
-offset_top = 45.0
-offset_right = 1096.0
-offset_bottom = 173.0
-texture_normal = ExtResource("5_v0vep")
+[node name="Dispense_Soda" type="Button" parent="Items" unique_id=1464373462]
+z_index = 1
+offset_left = 768.0
+offset_top = 107.0
+offset_right = 863.0
+offset_bottom = 147.0
+theme_override_fonts/font = ExtResource("2_ys8mp")
+theme_override_font_sizes/font_size = 32
+text = "Soda"
 
-[node name="TextureButton3" type="TextureButton" parent="." unique_id=24925544]
-offset_left = 769.0
-offset_top = 209.0
-offset_right = 897.0
-offset_bottom = 337.0
-texture_normal = ExtResource("5_v0vep")
+[node name="Dispense_Coffee" type="Button" parent="Items" unique_id=1886831917]
+z_index = 1
+offset_left = 889.0
+offset_top = 108.0
+offset_right = 984.0
+offset_bottom = 148.0
+theme_override_fonts/font = ExtResource("2_ys8mp")
+theme_override_font_sizes/font_size = 32
+text = "Coffee"
 
-[node name="TextureButton4" type="TextureButton" parent="." unique_id=1670667641]
-offset_left = 966.0
-offset_top = 215.0
-offset_right = 1094.0
-offset_bottom = 343.0
-texture_normal = ExtResource("5_v0vep")
+[node name="Dispense_JuiceBox" type="Button" parent="Items" unique_id=925389713]
+z_index = 1
+offset_left = 1010.0
+offset_top = 107.0
+offset_right = 1105.0
+offset_bottom = 147.0
+theme_override_fonts/font = ExtResource("2_ys8mp")
+theme_override_font_sizes/font_size = 32
+text = "Juice Box"
 
-[node name="TextureButton5" type="TextureButton" parent="." unique_id=123468372]
+[node name="Dispense_Chips" type="Button" parent="Items" unique_id=1657779941]
+z_index = 1
 offset_left = 771.0
-offset_top = 371.0
-offset_right = 899.0
-offset_bottom = 499.0
-texture_normal = ExtResource("5_v0vep")
+offset_top = 366.0
+offset_right = 866.0
+offset_bottom = 406.0
+theme_override_fonts/font = ExtResource("2_ys8mp")
+theme_override_font_sizes/font_size = 32
+text = "Chips"
 
-[node name="TextureButton6" type="TextureButton" parent="." unique_id=1829913622]
-offset_left = 971.0
-offset_top = 375.0
-offset_right = 1099.0
-offset_bottom = 503.0
-texture_normal = ExtResource("5_v0vep")
+[node name="Dispense_Candu" type="Button" parent="Items" unique_id=405899841]
+z_index = 1
+offset_left = 880.0
+offset_top = 364.0
+offset_right = 975.0
+offset_bottom = 404.0
+theme_override_fonts/font = ExtResource("2_ys8mp")
+theme_override_font_sizes/font_size = 32
+text = "Candy"
+
+[node name="Dispense_EnergyDrink" type="Button" parent="Items" unique_id=1531580192]
+z_index = 1
+offset_left = 990.0
+offset_top = 363.0
+offset_right = 1125.0
+offset_bottom = 403.0
+theme_override_fonts/font = ExtResource("2_ys8mp")
+theme_override_font_sizes/font_size = 32
+text = "Energy Drink"
+
+[node name="Dispense_InstantNoodles" type="Button" parent="Items" unique_id=1945338489]
+z_index = 1
+offset_left = 761.0
+offset_top = 242.0
+offset_right = 1113.0
+offset_bottom = 282.0
+theme_override_fonts/font = ExtResource("2_ys8mp")
+theme_override_font_sizes/font_size = 32
+text = "Instant Noodles"
+
+[node name="Deny" type="Button" parent="Items" unique_id=814571177]
+z_index = 1
+offset_left = 768.0
+offset_top = 549.0
+offset_right = 1120.0
+offset_bottom = 589.0
+theme_override_fonts/font = ExtResource("2_ys8mp")
+theme_override_font_sizes/font_size = 32
+text = "Deny"
 
 [connection signal="pressed" from="Option1" to="." method="_on_Option1_pressed"]
+[connection signal="pressed" from="Next" to="." method="_on_Next_pressed"]
 [connection signal="pressed" from="Option2" to="." method="_on_Option2_pressed"]
+[connection signal="pressed" from="Items/Dispense_Soda" to="." method="on_vended_item_pressed" binds= ["Soda"]]
+[connection signal="pressed" from="Items/Dispense_Coffee" to="." method="on_vended_item_pressed" binds= ["Coffee"]]
+[connection signal="pressed" from="Items/Dispense_InstantNoodles" to="." method="on_vended_item_pressed" binds= ["Instant Noodles"]]

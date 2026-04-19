@@ -7,7 +7,6 @@ signal assemble_requested(entry_index: int)
 @onready var dialog_label: RichTextLabel = $Dialog
 
 @onready var next_button: Button = $Next
-@onready var assemble_button: Button = $Assemble
 @onready var option_1: Button = $Option1
 @onready var option_2: Button = $Option2
 
@@ -52,16 +51,14 @@ func _show_entry() -> void:
 
 func _update_buttons() -> void:
 	next_button.visible = false
-	assemble_button.visible = false
 	option_1.visible = false
 	option_2.visible = false
+	for i in $Items.get_children():
+				i.disabled = true
 
 	match current_entry.get("type", "dialogue"):
 		"dialogue":
 			next_button.visible = true
-
-		"assemble":
-			assemble_button.visible = true
 
 		"option":
 			option_1.visible = true
@@ -69,11 +66,11 @@ func _update_buttons() -> void:
 
 			option_1.text = current_entry.get("option_1_text", "Option 1")
 			option_2.text = current_entry.get("option_2_text", "Option 2")
+		"request":
+			for i in $Items.get_children():
+				i.disabled = false
 
-
-# =========================
-# ADD: Typing effect logic
-# =========================
+# Typing fx
 func _start_typing(text: String) -> void:
 	if _typing_tween and _typing_tween.is_running():
 		_typing_tween.kill()
@@ -100,9 +97,10 @@ func _finish_typing() -> void:
 
 func _set_buttons_disabled(disabled: bool) -> void:
 	next_button.disabled = disabled
-	assemble_button.disabled = disabled
 	option_1.disabled = disabled
 	option_2.disabled = disabled
+	for i in $Items.get_children():
+				i.disabled = false
 
 
 func _skip_typing_if_needed() -> bool:
@@ -114,28 +112,10 @@ func _skip_typing_if_needed() -> bool:
 	return false
 
 
-# =========================
-# Button callbacks (extended)
-# =========================
 func _on_Next_pressed() -> void:
 	if _skip_typing_if_needed():
 		return
 	_go_to_next(current_entry.get("next_entry_index", -1))
-
-
-func _on_Assemble_pressed() -> void:
-	if _skip_typing_if_needed():
-		return
-
-	var assemble_scene := preload("res://UI/AssembleMenu.tscn").instantiate()
-	get_tree().current_scene.add_child(assemble_scene)
-
-	assemble_scene.assemble_finished.connect(
-		func(result: String):
-			var next_index = current_entry.get(result, -1)
-			_go_to_next(next_index)
-	)
-
 
 
 func _on_Option1_pressed() -> void:
@@ -151,10 +131,24 @@ func _on_Option2_pressed() -> void:
 
 
 func _select_option(option_idx: int) -> void:
+
 	var indices = current_entry.get("option_next_indices", [])
 	if option_idx >= indices.size():
 		return
 	_go_to_next(indices[option_idx])
+
+#buttons with text
+func on_vended_item_pressed(item):
+	#get text of button pressed
+	var selected_item = item
+	var request_items = current_entry.get("request_items", [])
+	if selected_item in request_items:
+		_go_to_next(current_entry.get("request_success_entry_index", -1))
+	elif selected_item == current_entry.get("bad_item", ""):
+		_go_to_next(current_entry.get("request_bad_option_entry_index", -1))
+	else:
+		_go_to_next(current_entry.get("request_failure_entry_index", -1))
+
 
 
 func _go_to_next(next_index: int) -> void:

@@ -21,8 +21,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-OrderManager="*res://Global/order_manager.gd"
-KnowledgeManager="*res://Global/knowledge_manager.gd"
+DialogueManager="*uid://dxmg144gfrp67"
 
 [global_group]
 
