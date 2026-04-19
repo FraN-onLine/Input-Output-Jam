@@ -1,10 +1,10 @@
 extends Node
 
 #dialogue manager
-var dialofue_sample = [
+var dialogue_sample = [
 {
 	"name": "Student",
-	"portrait": preload("res://Assets/Characters/Josa.png"),
+	"portrait": preload("res://Assets/Characters/IO-OfficeLady_NonGlossed_NoMakeup.png"),
 	"text": "I want to apologize… but gently.",
 	
 	# type: "dialogue", "request", "option"

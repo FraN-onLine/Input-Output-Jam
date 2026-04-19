@@ -149,7 +149,8 @@ func on_vended_item_pressed(item):
 	else:
 		_go_to_next(current_entry.get("request_failure_entry_index", -1))
 
-
+func on_deny_pressed():
+	_go_to_next(current_entry.get("request_deny_entry_index", -1))
 
 func _go_to_next(next_index: int) -> void:
 	if next_index == -1:

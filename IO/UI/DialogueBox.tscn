@@ -135,7 +135,7 @@ theme_override_fonts/font = ExtResource("2_ys8mp")
 theme_override_font_sizes/font_size = 32
 text = "Chips"
 
-[node name="Dispense_Candu" type="Button" parent="Items" unique_id=405899841]
+[node name="Dispense_Candy" type="Button" parent="Items" unique_id=405899841]
 z_index = 1
 offset_left = 880.0
 offset_top = 364.0
@@ -180,4 +180,9 @@ text = "Deny"
 [connection signal="pressed" from="Option2" to="." method="_on_Option2_pressed"]
 [connection signal="pressed" from="Items/Dispense_Soda" to="." method="on_vended_item_pressed" binds= ["Soda"]]
 [connection signal="pressed" from="Items/Dispense_Coffee" to="." method="on_vended_item_pressed" binds= ["Coffee"]]
+[connection signal="pressed" from="Items/Dispense_JuiceBox" to="." method="on_vended_item_pressed" binds= ["Juice Box"]]
+[connection signal="pressed" from="Items/Dispense_Chips" to="." method="on_vended_item_pressed" binds= ["Chips"]]
+[connection signal="pressed" from="Items/Dispense_Candy" to="." method="on_vended_item_pressed" binds= ["Candy"]]
+[connection signal="pressed" from="Items/Dispense_EnergyDrink" to="." method="on_vended_item_pressed" binds= ["Energy Drink"]]
 [connection signal="pressed" from="Items/Dispense_InstantNoodles" to="." method="on_vended_item_pressed" binds= ["Instant Noodles"]]
+[connection signal="pressed" from="Items/Deny" to="." method="on_deny_pressed"]
