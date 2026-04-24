@@ -143,14 +143,17 @@ func on_vended_item_pressed(item):
 	var selected_item = item
 	var request_items = current_entry.get("request_items", [])
 	if selected_item in request_items:
+		Global.Good_Points = 1
 		_go_to_next(current_entry.get("request_success_entry_index", -1))
 	elif selected_item == current_entry.get("bad_item", ""):
+		Global.Good_Points -=1
 		_go_to_next(current_entry.get("request_bad_option_entry_index", -1))
 	else:
 		_go_to_next(current_entry.get("request_failure_entry_index", -1))
 
 func on_deny_pressed():
 	_go_to_next(current_entry.get("request_deny_entry_index", -1))
+	Global.Good_Points -= 2
 
 func _go_to_next(next_index: int) -> void:
 	if next_index == -1:

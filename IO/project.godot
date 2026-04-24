@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 DialogueManager="*uid://dxmg144gfrp67"
+Global="*uid://c7evcbp1n4r6u"
 
 [global_group]
 
