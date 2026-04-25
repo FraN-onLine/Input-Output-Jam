@@ -92,6 +92,14 @@ var student_day_1 = [
 		"text": "Rubbish. No wonder i never saw anyone use this machine.",
 		"type": "dialogue",
 		"next_entry_index": 8
+	},
+	{
+		#denied
+		"name": "Student",
+		"portrait": preload("res://Assets/Characters/IO-Student_NonGlossed.png"),
+		"text": "",
+		"type": "leave_and_next_char",
+		"next_dialogue": 1
 	}
 ]
 
@@ -142,13 +150,22 @@ var worker_day1 = [
 		#thought
 		"name": "You",
 		"portrait": preload("res://Assets/Characters/IO-OfficeLady_NonGlossed_NoMakeup.png"),
-		"text": "\"Whatever i do... Looks like her response will be receptive..., Something tells me \"",
+		"text": "\"Whatever i do... Looks like her response will be receptive...\"",
 		"type": "dialogue",
-		"next_entry_index": 5
-	}
-	
-	
+		"next_entry_index": 6
+	},
+	{
+		#thought
+		"name": "You",
+		"portrait": preload("res://Assets/Characters/IO-OfficeLady_NonGlossed_NoMakeup.png"),
+		"text": "\"Should i have tried another option?\"",
+		"type": "dialogue",
+		"next_dialogue": 6
+	},
 ]
+
+var DIALOGUES = [student_day_1, worker_day1]
+
 func _ready():
 	await get_tree().process_frame
-	get_tree().get_first_node_in_group("dialog_box").start(worker_day1)
+	get_tree().get_first_node_in_group("dialog_box").start(student_day_1)

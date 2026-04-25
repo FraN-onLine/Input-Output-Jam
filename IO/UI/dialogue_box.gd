@@ -10,20 +10,26 @@ signal assemble_requested(entry_index: int)
 @onready var option_1: Button = $Option1
 @onready var option_2: Button = $Option2
 
+@onready var fade: ColorRect = $Fade
+
 var dialogue_data: Array = []
 var current_index: int = 0
 var current_entry: Dictionary
 
+var portrait_default_pos: Vector2
+var portrait_offscreen_right: Vector2
+var portrait_offscreen_left: Vector2
 
-# =========================
-# ADD: Typing effect config
-# =========================
 @export var typing_speed := 0.03 # seconds per character
 
 var _full_text: String = ""
 var _typing := false
 var _typing_tween: Tween
 
+func _ready() -> void:
+	portrait_default_pos = portrait.position
+	portrait_offscreen_right = portrait_default_pos + Vector2(700, 0)
+	portrait_offscreen_left = portrait_default_pos + Vector2(-700, 0)
 
 func start(dialogue_array: Array, start_index := 0) -> void:
 	dialogue_data = dialogue_array
@@ -42,6 +48,8 @@ func _show_entry() -> void:
 	name_label.text = current_entry.get("name", "")
 	dialog_label.text = current_entry.get("text", "")
 	portrait.texture = current_entry.get("portrait", null)
+	if current_index == 0:
+		_portrait_enter()
 
 	# ADD: start typing instead of instant text
 	_start_typing(current_entry.get("text", ""))
@@ -69,6 +77,9 @@ func _update_buttons() -> void:
 		"request":
 			for i in $Items.get_children():
 				i.disabled = false
+		"leave_and_next_char":
+			_handle_leave_next_char()
+			return
 
 # Typing fx
 func _start_typing(text: String) -> void:
@@ -162,3 +173,43 @@ func _go_to_next(next_index: int) -> void:
 
 	current_index = next_index
 	_show_entry()
+
+func _fade_out_in(callback: Callable) -> void:
+	var t := create_tween()
+
+	t.tween_property(fade, "modulate:a", 1.0, 0.4)
+	t.tween_callback(callback)
+	t.tween_property(fade, "modulate:a", 0.0, 0.4)
+
+func _handle_leave_next_char() -> void:
+	var next_dialogue_in = current_entry.get("next_dialogue", [])
+	var next_dialogue = DialogueManager.DIALOGUES[next_dialogue_in]
+
+	_portrait_exit(func():
+		_fade_out_in(func():
+			start(next_dialogue, 0)
+		)
+	)
+
+func _portrait_enter() -> void:
+	portrait.position = portrait_offscreen_right
+
+	var t := create_tween()
+	t.tween_property(
+		portrait,
+		"position",
+		portrait_default_pos,
+		0.5
+	)
+
+func _portrait_exit(callback: Callable) -> void:
+	var t := create_tween()
+
+	t.tween_property(
+		portrait,
+		"position",
+		portrait_offscreen_left,
+		0.5
+	)
+
+	t.tween_callback(callback)

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bncxdntdwv31b"]
 
 [ext_resource type="Script" uid="uid://bdr7ns87rgexw" path="res://UI/dialogue_box.gd" id="1_ys8mp"]
+[ext_resource type="Texture2D" uid="uid://vuupjfln28uw" path="res://Assets/BG/360_F_1321145972_QApKFKjXjAlzZ0ig7emcKhPz0ciaAihz.jpg" id="2_4jsxm"]
 [ext_resource type="Texture2D" uid="uid://bdt4j6543i1ne" path="res://Assets/Characters/IO-OfficeLady_NonGlossed_NoMakeup.png" id="2_5mryu"]
 [ext_resource type="FontFile" uid="uid://ci73tgdvfkr2b" path="res://Assets/fs-pixel-sans-unicode-regular.ttf" id="2_ys8mp"]
 [ext_resource type="FontFile" uid="uid://b1smo7488bnqg" path="res://Assets/Silkscreen-Bold.ttf" id="4_5mryu"]
@@ -15,10 +16,18 @@ gradient = SubResource("Gradient_oaxx8")
 [node name="DialogueBox" type="CanvasLayer" unique_id=1759517449 groups=["dialog_box"]]
 script = ExtResource("1_ys8mp")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1266340262]
+[node name="BG" type="TextureRect" parent="." unique_id=1134571508]
 offset_right = 1154.0
 offset_bottom = 652.0
-color = Color(0.219945, 0.292178, 0.309156, 1)
+texture = ExtResource("2_4jsxm")
+stretch_mode = 4
+
+[node name="Fade" type="ColorRect" parent="." unique_id=2135729232]
+visible = false
+z_index = 3
+offset_right = 1154.0
+offset_bottom = 652.0
+color = Color(0, 0, 0, 1)
 
 [node name="Portrait" type="TextureRect" parent="." unique_id=306340806]
 offset_left = 72.0
@@ -28,11 +37,11 @@ offset_bottom = 3519.0
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_5mryu")
 
-[node name="Panel" type="Panel" parent="." unique_id=1887537901]
-offset_left = 2.0
+[node name="Panel" type="ColorRect" parent="." unique_id=267041813]
 offset_top = 392.0
 offset_right = 727.0
 offset_bottom = 647.0
+color = Color(0.41799998, 0.4312, 0.44, 1)
 
 [node name="Name" type="Label" parent="." unique_id=1824383783]
 offset_left = 30.0
@@ -174,6 +183,16 @@ offset_bottom = 589.0
 theme_override_fonts/font = ExtResource("2_ys8mp")
 theme_override_font_sizes/font_size = 32
 text = "Deny"
+
+[node name="Review" type="Label" parent="." unique_id=1171018429]
+visible = false
+offset_left = 346.0
+offset_top = 20.0
+offset_right = 420.0
+offset_bottom = 108.0
+theme_override_colors/font_color = Color(0.004463814, 0.47269177, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = ":)+"
 
 [connection signal="pressed" from="Option1" to="." method="_on_Option1_pressed"]
 [connection signal="pressed" from="Next" to="." method="_on_Next_pressed"]
