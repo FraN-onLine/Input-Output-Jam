@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cun2sf1q0mxk4"
-path="res://.godot/imported/IO-Student_NonGlossed.png-a267b9082ce59932e85134194d5f7350.ctex"
+uid="uid://dejp0e5nqqu6s"
+path="res://.godot/imported/IO-Student_NonGlossed1.png-61455d59ba5a7bc5a42cd62e5c3afd32.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/IO-Student_NonGlossed.png"
-dest_files=["res://.godot/imported/IO-Student_NonGlossed.png-a267b9082ce59932e85134194d5f7350.ctex"]
+source_file="res://Assets/Characters/IO-Student_NonGlossed1.png"
+dest_files=["res://.godot/imported/IO-Student_NonGlossed1.png-61455d59ba5a7bc5a42cd62e5c3afd32.ctex"]
 
 [params]
 

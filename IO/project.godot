@@ -24,6 +24,10 @@ config/icon="res://icon.svg"
 DialogueManager="*uid://dxmg144gfrp67"
 Global="*uid://c7evcbp1n4r6u"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [global_group]
 
 dialog_box=""
