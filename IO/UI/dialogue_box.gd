@@ -11,6 +11,7 @@ signal assemble_requested(entry_index: int)
 @onready var option_2: Button = $Option2
 
 @onready var fade: ColorRect = $Fade
+@onready var good_points_label: Label = $GoodPointsLabel
 
 var dialogue_data: Array = []
 var current_index: int = 0
@@ -30,11 +31,13 @@ func _ready() -> void:
 	portrait_default_pos = portrait.position
 	portrait_offscreen_right = portrait_default_pos + Vector2(700, 0)
 	portrait_offscreen_left = portrait_default_pos + Vector2(-700, 0)
+	_update_good_points_display()
 
 func start(dialogue_array: Array, start_index := 0) -> void:
 	dialogue_data = dialogue_array
 	current_index = start_index
 	_show_entry()
+	_update_good_points_display()
 
 
 func _show_entry() -> void:
@@ -74,12 +77,19 @@ func _update_buttons() -> void:
 
 			option_1.text = current_entry.get("option_1_text", "Option 1")
 			option_2.text = current_entry.get("option_2_text", "Option 2")
+			
+		"branching":
+			# Branching checks Good_Points threshold, automatically navigates
+			# No buttons needed — auto-resolves after typing finishes
+			pass
+			
 		"request":
 			for i in $Items.get_children():
 				i.disabled = false
 		"leave_and_next_char":
 			_handle_leave_next_char()
 			return
+
 
 # Typing fx
 func _start_typing(text: String) -> void:
@@ -104,6 +114,10 @@ func _start_typing(text: String) -> void:
 func _finish_typing() -> void:
 	_typing = false
 	dialog_label.text = _full_text
+	
+	# If this is a branching type, auto-resolve after typing finishes
+	if current_entry.get("type") == "branching":
+		_resolve_branching()
 
 
 func _set_buttons_disabled(disabled: bool) -> void:
@@ -113,6 +127,9 @@ func _set_buttons_disabled(disabled: bool) -> void:
 	for i in $Items.get_children():
 				i.disabled = false
 
+# Update the Good_Points counter in the top-right corner
+func _update_good_points_display() -> void:
+	good_points_label.text = "Reputation: " + str(Global.Good_Points)
 
 func _skip_typing_if_needed() -> bool:
 	if _typing:
@@ -146,25 +163,88 @@ func _select_option(option_idx: int) -> void:
 	var indices = current_entry.get("option_next_indices", [])
 	if option_idx >= indices.size():
 		return
+	
+	# Apply likeable_points for this option if present
+	var likeable_pts = current_entry.get("option_likeable_points", [])
+	if option_idx < likeable_pts.size():
+		Global.Good_Points += likeable_pts[option_idx]
+		_update_good_points_display()
+	
 	_go_to_next(indices[option_idx])
+
+
+# ── Branching Type ────────────────────────────────────────────────────────────
+# "branching" auto-navigates based on Good_Points threshold.
+# Example entry:
+# {
+#     "name": "You",
+#     "portrait": portrait,
+#     "text": "The kid's kicks are getting fiercer. Do I stand my ground?",
+#     "type": "branching",
+#     "branch_min_points": 2,          # if Good_Points >= this → success
+#     "branch_success_entry_index": 3, # goes here if threshold met
+#     "branch_failure_entry_index": 5  # goes here if threshold not met
+# }
+func _resolve_branching() -> void:
+	var min_points = current_entry.get("branch_min_points", 0)
+	var success_idx = current_entry.get("branch_success_entry_index", -1)
+	var failure_idx = current_entry.get("branch_failure_entry_index", -1)
+	
+	if Global.Good_Points >= min_points:
+		_go_to_next(success_idx)
+	else:
+		_go_to_next(failure_idx)
+
+
+# ── Request Type ──────────────────────────────────────────────────────────────
+# "request" entries now support per-outcome likeable_points:
+# {
+#     "type": "request",
+#     "request_items": ["Instant Noodles"],
+#     "request_success_entry_index": 5,
+#     "request_failure_entry_index": 6,
+#     "request_deny_entry_index": 7,
+#     "request_likeable_points_success": 2,   # Good_Points added on correct item
+#     "request_likeable_points_failure": -1,  # Good_Points added on wrong item
+#     "request_likeable_points_deny": -2      # Good_Points added on deny
+# }
+# 
+# Also supports bad_item for special "wrong" outcomes:
+# {
+#     "bad_item": "Expired Milk",
+#     "request_bad_option_entry_index": 4,
+#     "request_likeable_points_bad": -3
+# }
 
 #buttons with text
 func on_vended_item_pressed(item):
 	#get text of button pressed
 	var selected_item = item
 	var request_items = current_entry.get("request_items", [])
+	
+	# Apply likeable_points for request outcomes
+	var success_pts = current_entry.get("request_likeable_points_success", 1)
+	var failure_pts = current_entry.get("request_likeable_points_failure", -1)
+	var bad_pts = current_entry.get("request_likeable_points_bad", -3)
+	
 	if selected_item in request_items:
-		Global.Good_Points = 1
+		Global.Good_Points += success_pts
+		_update_good_points_display()
 		_go_to_next(current_entry.get("request_success_entry_index", -1))
 	elif selected_item == current_entry.get("bad_item", ""):
-		Global.Good_Points -=1
+		Global.Good_Points += bad_pts
+		_update_good_points_display()
 		_go_to_next(current_entry.get("request_bad_option_entry_index", -1))
 	else:
+		Global.Good_Points += failure_pts
+		_update_good_points_display()
 		_go_to_next(current_entry.get("request_failure_entry_index", -1))
 
 func on_deny_pressed():
+	var deny_pts = current_entry.get("request_likeable_points_deny", -2)
+	Global.Good_Points += deny_pts
+	_update_good_points_display()
 	_go_to_next(current_entry.get("request_deny_entry_index", -1))
-	Global.Good_Points -= 2
 
 func _go_to_next(next_index: int) -> void:
 	if next_index == -1:
