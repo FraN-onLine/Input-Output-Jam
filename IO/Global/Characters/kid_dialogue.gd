@@ -126,8 +126,7 @@ var day2 = [
 		"name": "You",
 		"portrait": portrait,
 		"text": "",
-		"type": "end_of_day",
-		"day_number": 2,
+		"type": "leave_and_next_char",
 		"next_dialogue": 5
 	}
 ]
