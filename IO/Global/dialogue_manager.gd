@@ -4,49 +4,17 @@ extends Node
 # DIALOGUE MANAGER — Hub & Documentation
 # ═══════════════════════════════════════════════════════════════════════════════
 #
-# Character dialogues are stored in separate files under Global/Characters/.
-# Each file exports `day1`, `day2`, etc. arrays. This hub imports them and builds
-# the master DIALOGUES list.
-#
-# To add a new character:
-#   1. Create a new .gd file in Global/Characters/ (copy an existing one)
-#   2. Add its preload below
-#   3. Append its day arrays to the DIALOGUES list in _ready()
+# Each dialogue is an Array of entry Dictionaries.
+# The dialogue_box.gd reads these and renders them sequentially.
 #
 # ── Entry Types ───────────────────────────────────────────────────────────────
 #
 # 1. "dialogue" — Simple text display. Player clicks Next to proceed.
-#    Fields: name, portrait, text, type: "dialogue", next_entry_index: int
-#
-# 2. "option" — Two choices. Each choice can add/subtract Good_Points.
-#    Fields: name, portrait, text, type: "option"
-#      option_1_text, option_2_text: String
-#      option_next_indices: [int, int]
-#      option_likeable_points: [int, int] — Good_Points delta per option
-#
+# 2. "option" — Two choices with option_likeable_points for Good_Points deltas.
 # 3. "request" — Player selects an item from the vending UI.
-#    Fields: name, portrait, text, type: "request"
-#      request_items: [String]
-#      bad_item: String (optional)
-#      request_success/failure/bad_option/deny_entry_index: int
-#      request_likeable_points_success/failure/bad/deny: int
-#        Defaults if omitted: success=+1, failure=-1, bad=-3, deny=-2
-#
-# 4. "branching" — Auto-resolves after typing finishes.
-#    Checks Global.Good_Points against a threshold.
-#    Fields: name, portrait, text, type: "branching"
-#      branch_min_points: int
-#      branch_success_entry_index: int
-#      branch_failure_entry_index: int
-#
-# 5. "leave_and_next_char" — Transition to next character's dialogue.
-#    Fields: name, portrait, text, type: "leave_and_next_char"
-#      next_dialogue: int — index into DIALOGUES array
-#
-# 6. "end_of_day" — Fades to black, shows remark, transitions to next day.
-#    Fields: name, portrait, text, type: "end_of_day"
-#      day_number: int
-#      next_day_dialogue_index: int — dialogue to start next day
+# 4. "branching" — Auto-resolves via Good_Points threshold after Next click.
+# 5. "leave_and_next_char" — Portrait slide + fade to next character
+# 6. "end_of_day" — Full-screen fade to black, day text, next day
 #
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -83,26 +51,32 @@ var dialogue_sample = [
 var StudentDialogue = preload("res://Global/Characters/student_dialogue.gd")
 var WorkerDialogue = preload("res://Global/Characters/worker_dialogue.gd")
 var KarenDialogue = preload("res://Global/Characters/karen_dialogue.gd")
+var KidDialogue = preload("res://Global/Characters/kid_dialogue.gd")
 
 # ── Master Dialogue List ──────────────────────────────────────────────────────
 # Index 0: Student Day 1
 # Index 1: Worker Day 1
-# Index 2: Karen Day 1  (ends with end_of_day → next_day_dialogue_index: 3)
-# Index 3: Student Day 2
-# Index 4+: Future days / characters
+# Index 2: Karen Day 1  (end_of_day → 3)
+# Index 3: Student Day 2 (end_of_day → 4)
+# Index 4: Kid Day 2     (end_of_day → 5)
+# Index 5: Karen Day 2   (leave → 6)
+# Index 6: Worker Day 2  (end_of_day → -1 = game ends)
 var DIALOGUES = []
 
 func _ready():
 	var s = StudentDialogue.new()
 	var w = WorkerDialogue.new()
 	var k = KarenDialogue.new()
+	var kid = KidDialogue.new()
 	
-	# Build the list in sequence order
 	DIALOGUES = [
 		s.day1,   # 0
 		w.day1,   # 1
 		k.day1,   # 2
-		s.day2    # 3
+		s.day2,   # 3
+		kid.day2, # 4
+		k.day2,   # 5
+		w.day2    # 6
 	]
 	
 	await get_tree().process_frame

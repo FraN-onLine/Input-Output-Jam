@@ -219,7 +219,7 @@ func _handle_end_of_day() -> void:
 		remark = "\"Good day.\""
 
 	var day1_text = "Day " + str(day_number) + " Complete\n" + remark
-	var day2_text = "Day " + str(day_number + 1) + "\n\"This day surely will get better...\""
+	var day2_text = "Day " + str(day_number + 1) + " started"
 
 	# Hide all UI immediately
 	portrait.visible = false
@@ -255,11 +255,11 @@ func _handle_end_of_day() -> void:
 	_tween.tween_property(day_complete_label, "modulate:a", 1.0, 0.5)
 	# 5. Hold Day 2 text
 	_tween.tween_interval(2.0)
-	# 6. Fade out background AND text together
+	# 6. Fade out background AND text together (parallel)
 	_tween.tween_callback(func():
 		day_complete_label.visible = false
 	)
-	_tween.tween_parallel().tween_property(fade, "modulate:a", 0.0, 0.8)
+	_tween.parallel().tween_property(fade, "modulate:a", 0.0, 0.8)
 	# 7. Start next day
 	_tween.tween_callback(func():
 		if next_day_idx < 0 or next_day_idx >= DialogueManager.DIALOGUES.size():

@@ -2,6 +2,7 @@ extends Node
 
 var portrait = preload("res://Assets/Characters/IO-Karen.png")
 
+# ── Day 1 ─────────────────────────────────────────────────────────────────────
 var day1 = [
 	{
 		"name": "Karen",
@@ -145,5 +146,145 @@ var day1 = [
 		"type": "end_of_day",
 		"day_number": 1,
 		"next_day_dialogue_index": 3
+	}
+]
+
+# ── Day 2 ─────────────────────────────────────────────────────────────────────
+# Karen returns. She's still aggressive but something's off about her.
+var day2 = [
+	{
+		"name": "Karen",
+		"portrait": portrait,
+		"text": "You again. Still standing here like you own the place.",
+		"type": "dialogue",
+		"next_entry_index": 1
+	},
+	{
+		"name": "You",
+		"portrait": portrait,
+		"text": "\"She's back. And she looks... different. Tired.\"",
+		"type": "dialogue",
+		"next_entry_index": 2
+	},
+	{
+		"name": "Karen",
+		"portrait": portrait,
+		"text": "Don't look at me like that. I'm not here to chat. Give me something strong.",
+		"type": "option",
+		"option_1_text": "You look exhausted.",
+		"option_2_text": "Same as yesterday?",
+		"option_next_indices": [3, 5],
+		"option_likeable_points": [1, 0]
+	},
+	{
+		"name": "Karen",
+		"portrait": portrait,
+		"text": "Exhausted? Ha. You don't know the half of it. I've been walking for hours.",
+		"type": "dialogue",
+		"next_entry_index": 4
+	},
+	{
+		"name": "Karen",
+		"portrait": portrait,
+		"text": "Feels like I've been going in circles. This whole city is a maze.",
+		"type": "dialogue",
+		"next_entry_index": 6
+	},
+	{
+		"name": "Karen",
+		"portrait": portrait,
+		"text": "Yeah, same. Coffee. Or something stronger if you have it.",
+		"type": "dialogue",
+		"next_entry_index": 6
+	},
+	{
+		"name": "Karen",
+		"portrait": portrait,
+		"text": "Just give me something. I don't even care anymore.",
+		"type": "request",
+		"request_items": ["Coffee", "Energy Drink"],
+		"request_success_entry_index": 7,
+		"request_failure_entry_index": 8,
+		"request_deny_entry_index": 9,
+		"request_likeable_points_success": 1,
+		"request_likeable_points_failure": -1,
+		"request_likeable_points_deny": -2
+	},
+	{
+		"name": "Karen",
+		"portrait": portrait,
+		"text": "*She takes it quietly. No complaint. That's... unsettling.*",
+		"type": "dialogue",
+		"next_entry_index": 10
+	},
+	{
+		"name": "Karen",
+		"portrait": portrait,
+		"text": "*She stares at the item, then at you. She looks confused.*",
+		"type": "dialogue",
+		"next_entry_index": 10
+	},
+	{
+		"name": "Karen",
+		"portrait": portrait,
+		"text": "*She waits. Then sighs. 'Fine.' She walks away slowly.*",
+		"type": "dialogue",
+		"next_entry_index": 10
+	},
+	{
+		"name": "Karen",
+		"portrait": portrait,
+		"text": "Hey. Machine.",
+		"type": "dialogue",
+		"next_entry_index": 11
+	},
+	{
+		"name": "You",
+		"portrait": portrait,
+		"text": "\"...Yes?\"",
+		"type": "dialogue",
+		"next_entry_index": 12
+	},
+	{
+		"name": "Karen",
+		"portrait": portrait,
+		"text": "Have you noticed... there's no one else around? Like, really no one?",
+		"type": "dialogue",
+		"next_entry_index": 13
+	},
+	{
+		"name": "You",
+		"portrait": portrait,
+		"text": "\"I... serve whoever comes. That's all I know.\"",
+		"type": "dialogue",
+		"next_entry_index": 14
+	},
+	{
+		"name": "Karen",
+		"portrait": portrait,
+		"text": "Right. Of course. Just a machine. *She laughs bitterly.*",
+		"type": "dialogue",
+		"next_entry_index": 15
+	},
+	{
+		"name": "Karen",
+		"portrait": portrait,
+		"text": "*She walks off, muttering to herself.* 'Maybe I really am lost...'",
+		"type": "dialogue",
+		"next_entry_index": 16
+	},
+	{
+		"name": "You",
+		"portrait": portrait,
+		"text": "\"Lost? What did she mean by that?\"",
+		"type": "dialogue",
+		"next_entry_index": 17
+	},
+	{
+		"name": "You",
+		"portrait": portrait,
+		"text": "",
+		"type": "leave_and_next_char",
+		"next_dialogue": 6
 	}
 ]
