@@ -193,3 +193,187 @@ var day2 = [
 		"next_dialogue": 4
 	}
 ]
+
+# ── Day 3 ─────────────────────────────────────────────────────────────────────
+# The student comes back one last time. He's fading. He knows the truth now.
+var day3 = [
+	{
+		"name": "Student",
+		"portrait": portrait_worried,
+		"text": "Mr. Machine... I think I understand now.",
+		"type": "dialogue",
+		"next_entry_index": 1
+	},
+	{
+		"name": "You",
+		"portrait": portrait_default,
+		"text": "\"Understand what?\"",
+		"type": "dialogue",
+		"next_entry_index": 2
+	},
+	{
+		"name": "Student",
+		"portrait": portrait_worried,
+		"text": "Why I keep coming back here. Why I never actually eat the food you give me.",
+		"type": "dialogue",
+		"next_entry_index": 3
+	},
+	{
+		"name": "Student",
+		"portrait": portrait_despair,
+		"text": "I... I died, didn't I? A long time ago. The accident on the way to school.",
+		"type": "dialogue",
+		"next_entry_index": 4
+	},
+	{
+		"name": "You",
+		"portrait": portrait_default,
+		"text": "\"...\"",
+		"type": "dialogue",
+		"next_entry_index": 5
+	},
+	{
+		"name": "Student",
+		"portrait": portrait_satisfied,
+		"text": "It's okay. I'm not scared anymore. You were the only one who was ever kind to me.",
+		"type": "dialogue",
+		"next_entry_index": 6
+	},
+	{
+		"name": "Student",
+		"portrait": portrait_satisfied,
+		"text": "Thank you, Mr. Machine. For everything. I think... I can rest now.",
+		"type": "dialogue",
+		"next_entry_index": 7
+	},
+	{
+		"name": "You",
+		"portrait": portrait_default,
+		"text": "\"Goodbye, kid.\"",
+		"type": "dialogue",
+		"next_entry_index": 8
+	},
+	{
+		"name": "Student",
+		"portrait": portrait_satisfied,
+		"text": "*He smiles, then slowly fades away like morning mist.*",
+		"type": "dialogue",
+		"next_entry_index": 9
+	},
+	{
+		"name": "You",
+		"portrait": portrait_default,
+		"text": "\"...He's gone. For real this time.\"",
+		"type": "dialogue",
+		"next_entry_index": 10
+	},
+	{
+		"name": "You",
+		"portrait": portrait_default,
+		"text": "",
+		"type": "leave_and_next_char",
+		"next_dialogue": 8
+	}
+]
+
+# ── Day 4 ─────────────────────────────────────────────────────────────────────
+# The student comes back if he hasn't rested yet. He's more aware now.
+var day4 = [
+	{
+		"name": "Student",
+		"portrait": portrait_worried,
+		"text": "Mr. Machine... I'm a few coins short today.",
+		"type": "dialogue",
+		"next_entry_index": 1
+	},
+	{
+		"name": "Student",
+		"portrait": portrait_worried,
+		"text": "Would you accept this mushroom I picked off in exchange?",
+		"type": "dialogue",
+		"next_entry_index": 2
+	},
+	{
+		"name": "You",
+		"portrait": portrait_default,
+		"text": "\"A mushroom? In this dead city?\"",
+		"type": "dialogue",
+		"next_entry_index": 3
+	},
+	{
+		"name": "Student",
+		"portrait": portrait_worried,
+		"text": "It's all I have. Please. I'm so hungry.",
+		"type": "request",
+		"request_items": ["Instant Noodles", "Chips", "Candy"],
+		"request_success_entry_index": 4,
+		"request_failure_entry_index": 5,
+		"request_deny_entry_index": 6,
+		"request_likeable_points_success": 3,
+		"request_likeable_points_failure": -1,
+		"request_likeable_points_deny": -3
+	},
+	{
+		"name": "Student",
+		"portrait": portrait_satisfied,
+		"text": "Thank you... I'll remember this. Even if I can't remember much else.",
+		"type": "dialogue",
+		"next_entry_index": 7
+	},
+	{
+		"name": "Student",
+		"portrait": portrait_worried,
+		"text": "Oh... okay. I understand.",
+		"type": "dialogue",
+		"next_entry_index": 7
+	},
+	{
+		"name": "Student",
+		"portrait": portrait_despair,
+		"text": "...Right. Doesn't matter. What does 'eating' do to me anyways...",
+		"type": "dialogue",
+		"next_entry_index": 7
+	},
+	{
+		"name": "Student",
+		"portrait": portrait_worried,
+		"text": "I think... I understand now. Why I keep coming back. Why I never really eat.",
+		"type": "dialogue",
+		"next_entry_index": 8
+	},
+	{
+		"name": "Student",
+		"portrait": portrait_satisfied,
+		"text": "I'm not really here, am I? But you still gave me something. That's more than anyone else did.",
+		"type": "dialogue",
+		"next_entry_index": 9
+	},
+	{
+		"name": "Student",
+		"portrait": portrait_satisfied,
+		"text": "I think I can rest now. Thank you, Mr. Machine.",
+		"type": "dialogue",
+		"next_entry_index": 10
+	},
+	{
+		"name": "Student",
+		"portrait": portrait_satisfied,
+		"text": "*He fades away, finally at peace.*",
+		"type": "dialogue",
+		"next_entry_index": 11
+	},
+	{
+		"name": "You",
+		"portrait": portrait_default,
+		"text": "\"...Goodbye.\"",
+		"type": "dialogue",
+		"next_entry_index": 12
+	},
+	{
+		"name": "You",
+		"portrait": portrait_default,
+		"text": "",
+		"type": "leave_and_next_char",
+		"next_dialogue": -1
+	}
+]

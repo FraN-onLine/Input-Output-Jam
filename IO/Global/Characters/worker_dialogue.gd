@@ -271,6 +271,220 @@ var day2 = [
 		"text": "",
 		"type": "end_of_day",
 		"day_number": 2,
+		"next_day_dialogue_index": 7
+	}
+]
+
+# ── Day 3 ─────────────────────────────────────────────────────────────────────
+# The final reveal. The Office Lady comes back one last time.
+# She knows the truth. The player must make a final choice.
+var day3 = [
+	{
+		"name": "Office Lady",
+		"portrait": portrait,
+		"text": "*She walks up. She looks... clearer. More solid than before.*",
+		"type": "dialogue",
+		"next_entry_index": 1
+	},
+	{
+		"name": "Office Lady",
+		"portrait": portrait,
+		"text": "I remember everything now. The crash. The silence. The years of walking.",
+		"type": "dialogue",
+		"next_entry_index": 2
+	},
+	{
+		"name": "You",
+		"portrait": portrait,
+		"text": "\"...You're like the others, aren't you?\"",
+		"type": "dialogue",
+		"next_entry_index": 3
+	},
+	{
+		"name": "Office Lady",
+		"portrait": portrait,
+		"text": "Yes. The student. The kid. Karen. All of us. We've been coming to you for... I don't know how long.",
+		"type": "dialogue",
+		"next_entry_index": 4
+	},
+	{
+		"name": "Office Lady",
+		"portrait": portrait,
+		"text": "You're the only thing in this dead city that still gives. That still cares. That's why we kept coming back.",
+		"type": "dialogue",
+		"next_entry_index": 5
+	},
+	{
+		"name": "Office Lady",
+		"portrait": portrait,
+		"text": "But now... we can all move on. Thanks to you.",
+		"type": "dialogue",
+		"next_entry_index": 6
+	},
+	{
+		"name": "Office Lady",
+		"portrait": portrait,
+		"text": "There's just one thing left. What about you?",
+		"type": "dialogue",
+		"next_entry_index": 7
+	},
+	{
+		"name": "You",
+		"portrait": portrait,
+		"text": "\"...What about me?\"",
+		"type": "dialogue",
+		"next_entry_index": 8
+	},
+	{
+		"name": "Office Lady",
+		"portrait": portrait,
+		"text": "You've been here for so long. Serving ghosts in an empty city. Don't you want to rest too?",
+		"type": "option",
+		"option_1_text": "I want to keep serving.",
+		"option_2_text": "I want to rest.",
+		"option_next_indices": [9, 12],
+		"option_likeable_points": [2, 0]
+	},
+	# Ending A: Keep serving (Good Ending)
+	{
+		"name": "Office Lady",
+		"portrait": portrait,
+		"text": "*She smiles warmly.* I thought you'd say that.",
+		"type": "dialogue",
+		"next_entry_index": 10
+	},
+	{
+		"name": "Office Lady",
+		"portrait": portrait,
+		"text": "Then keep being you. Someone will always need a kind machine.",
+		"type": "dialogue",
+		"next_entry_index": 11
+	},
+	{
+		"name": "You",
+		"portrait": portrait,
+		"text": "\"...I will.\"",
+		"type": "dialogue",
+		"next_entry_index": 15
+	},
+	# Ending B: Rest (Secret Ending)
+	{
+		"name": "Office Lady",
+		"portrait": portrait,
+		"text": "*She nods slowly.* I understand.",
+		"type": "dialogue",
+		"next_entry_index": 13
+	},
+	{
+		"name": "Office Lady",
+		"portrait": portrait,
+		"text": "Then close your eyes, machine. You've earned it.",
+		"type": "dialogue",
+		"next_entry_index": 14
+	},
+	{
+		"name": "You",
+		"portrait": portrait,
+		"text": "\"...Thank you.\"",
+		"type": "dialogue",
+		"next_entry_index": 15
+	},
+	# Final fade
+	{
+		"name": "You",
+		"portrait": portrait,
+		"text": "",
+		"type": "end_of_day",
+		"day_number": 3,
+		"next_day_dialogue_index": -1
+	}
+]
+
+# ── Day 4 ─────────────────────────────────────────────────────────────────────
+# The Office Lady comes back if she hasn't rested yet. She's more aware now.
+var day4 = [
+	{
+		"name": "Office Lady",
+		"portrait": portrait,
+		"text": "*She walks up. She looks... peaceful.*",
+		"type": "dialogue",
+		"next_entry_index": 1
+	},
+	{
+		"name": "Office Lady",
+		"portrait": portrait,
+		"text": "I've been thinking about what you said. About keeping going.",
+		"type": "dialogue",
+		"next_entry_index": 2
+	},
+	{
+		"name": "You",
+		"portrait": portrait,
+		"text": "\"...And?\"",
+		"type": "dialogue",
+		"next_entry_index": 3
+	},
+	{
+		"name": "Office Lady",
+		"portrait": portrait,
+		"text": "I think I understand now. Why I kept coming back. Why I couldn't let go.",
+		"type": "dialogue",
+		"next_entry_index": 4
+	},
+	{
+		"name": "Office Lady",
+		"portrait": portrait,
+		"text": "It wasn't the coffee. It wasn't the routine. It was you. You made me feel like I still mattered.",
+		"type": "dialogue",
+		"next_entry_index": 5
+	},
+	{
+		"name": "You",
+		"portrait": portrait,
+		"text": "\"...You did matter. You still do.\"",
+		"type": "dialogue",
+		"next_entry_index": 6
+	},
+	{
+		"name": "Office Lady",
+		"portrait": portrait,
+		"text": "*She smiles.* I know that now. Because of you.",
+		"type": "dialogue",
+		"next_entry_index": 7
+	},
+	{
+		"name": "Office Lady",
+		"portrait": portrait,
+		"text": "I think I'm ready to go. For real this time.",
+		"type": "dialogue",
+		"next_entry_index": 8
+	},
+	{
+		"name": "Office Lady",
+		"portrait": portrait,
+		"text": "Thank you, machine. For everything.",
+		"type": "dialogue",
+		"next_entry_index": 9
+	},
+	{
+		"name": "Office Lady",
+		"portrait": portrait,
+		"text": "*She turns and walks away. She fades, but she's smiling.*",
+		"type": "dialogue",
+		"next_entry_index": 10
+	},
+	{
+		"name": "You",
+		"portrait": portrait,
+		"text": "\"...Goodbye.\"",
+		"type": "dialogue",
+		"next_entry_index": 11
+	},
+	{
+		"name": "You",
+		"portrait": portrait,
+		"text": "",
+		"type": "leave_and_next_char",
 		"next_dialogue": -1
 	}
 ]
