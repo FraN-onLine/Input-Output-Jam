@@ -15,6 +15,8 @@ signal assemble_requested(entry_index: int)
 @onready var day_complete_label: Label = $DayCompleteLabel
 @onready var day_number_top: Label = $DayNumberTop
 @onready var day_number_bottom: Label = $DayNumberBottom
+@onready var credit_label: Label = $HUD/CreditLabel
+@onready var day_label: Label = $HUD/DayLabel
 
 var dialogue_data: Array = []
 var current_index: int = 0
